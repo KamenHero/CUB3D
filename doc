@@ -1,0 +1,42 @@
+
+#######################################################################
+what is ray casting?
+::
+it is a way to transform  a limited form of data (create a 3d view using data)
+by tarcing rays from the view point into the view volume (rays of light hit the walls
+get turn to wall if collide happen or empty space in case of none)
+and it is not possible to move in z axis using ray-casting because it put a geaomastic constriants
+{
+    1. Walls are always at 90° angle with the floor.
+    2. Walls are made of cubes that have the same size.
+    3. Floor is always flat.
+} 
+#######################################################################
+BUILT THE WORLD
+::
+the size of cube wil be  64x64x64 units:
+    it was chosing becuase I chose to do sheft opertations
+    and for that it need to be devide by 2this faster than noral arithmetic;
+    -The larger the size of the cube, the blockier the world will look like
+    but smaller cube will make the rendering slower
+chose ow ou move in axis
+
+now we need:
+    palyer hight (how high the player view the wold) = 32
+    player FOV (field of view) = 60
+    player position:
+    {
+        take x coordinate 
+        y coordinate
+        the angle the player facing:N, S, W, E
+    }
+    Relationship between player and projection plane (???)
+     https://permadi.com/tutorial/raycast/images/figure8.gif
+    the window size: 320 wide and 200 high
+now we calculate:
+    size of window: 320*200;
+    middle = 160, 100;
+    angel between colum and how to loop = 60/320 = 1 colum
+    distance from player to the project planer 160 /30 = 277 
+
+#######################################################################
