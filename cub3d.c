@@ -6,38 +6,61 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:23:58 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/13 15:58:44 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/08/15 17:09:50 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_cuberror(char *str)
+int	ft_skipping(char *file, int i)
 {
-	char	*ptr;
-	int		x;
-	int		y;
-
-	ptr = ".cub";
-	x = ft_strlenn(str);
-	y = ft_strlenn(ptr);
-	while (y >= 0)
+	while (file[i] == ' '|| file[i] == '\t')
 	{
-		if (str[x] != ptr[y])
-		{
-			ft_putendl_fd("Error : cub chi kwiyess", 2);
-			exit(-1);
-		}
-		x--;
-		y--;
+		i++;
+	}
+	return(i);
+}
+
+void	ft_checkingpath(char *file, const char *str, int i)
+{
+	if (ft_strcmp())
+}
+
+void	initialpars(t_data data, char **file)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (file[i][j])
+	{
+		j = 0;
+		j = ft_skipping(file[i], j);
+		if (file[i][j] == '\n')
+			continue ;
+		
 	}
 }
 
 int	main(int argc, char **argv)
 {
+	t_data	*data;
+	int	i;
+	char	**file;
+
+	i = 0;
 	(void)argc;
+	(void)data;
 	if (argc != 2)
 		(ft_putendl_fd("error", 2), exit(1));
 	ft_cuberror(argv[1]);
-	
+	data = initialdata();
+	file = mapping(argv[1]);
+	while (file[i])
+	{
+		printf("%s", file[i]);
+		i++;
+	}
+
 }

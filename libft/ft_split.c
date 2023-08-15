@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oryadi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:09:22 by oryadi            #+#    #+#             */
-/*   Updated: 2022/10/21 18:09:23 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/08/15 15:05:15 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static	int	ft_fstr(const char *s, char c)
 			i++;
 		j++;
 	}
+	printf("%d\n", j);
 	return (j);
 }
 
@@ -77,6 +78,12 @@ char	**ft_split(char const *s, char c)
 		return (0);
 	while (start + len < ft_strlen(s))
 	{
+		// if (s[start] == c)
+		// {
+		// 	str[i] = ft_strdup("\n");
+		// 	start++;
+		// 	i++;
+		// }
 		start = sstart(s, c, start + len);
 		len = ft_len(s, c, start);
 		if (len == 0)

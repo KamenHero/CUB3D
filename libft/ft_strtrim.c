@@ -41,7 +41,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (ft_strdup(""));
 	while (s1[start] != '\0' && ft_check(set, s1[start]) == 1)
 		start++;
-	while (start < len && len >= 0 && ft_check(set, s1[len]) == 1)
+	while (start < len && ft_check(set, s1[len]) == 1)
 		len--;
 	str = ft_substr(s1, start, (len - start) + 1);
 	return (str);

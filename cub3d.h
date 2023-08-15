@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:48:57 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/13 15:37:01 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/08/15 17:07:30 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_component
 	size_t		leny;
 }			t_component;
 
-
 typedef struct s_data
 {
 	char		*no;
@@ -43,6 +42,10 @@ typedef struct s_data
 	t_component	*comp;
 }				t_data;
 
-
+void	ft_cuberror(char *str);
+t_data	*initialdata(void);
+char	**mapping(char *arg);
+char    **ft_splitting(char *str, int i, char c);
+int		ft_strcmp(char *line, char *str);
 
 #endif

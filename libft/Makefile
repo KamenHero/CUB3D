@@ -8,7 +8,7 @@
 
 NAME = libft.a
 
-CC = cc
+CC = gcc-11
 
 CFLAGS = -Wall -Werror -Wextra
 
