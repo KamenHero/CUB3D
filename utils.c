@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:14:33 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/15 17:07:06 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/08/16 16:15:10 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ t_data	*initialdata(void)
 	data->so = NULL;
 	data->we = NULL;
 	data->ea = NULL;
-	data->fc = NULL;
+	data->c = NULL;
+	data->f = NULL;
 	data->map = NULL;
 	player->x = 0;
 	player->y = 0;
@@ -54,12 +55,17 @@ t_data	*initialdata(void)
 	return(data);
 }
 
-int	ft_strcmp(char *line, char *str)
+int	ft_strcmp(char *line, const char *str, int y)
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
-	while ((line[i] && str[i]) && line[i] == str[i])
+	while (line[y] == str[i])
+	{
+		y++;
 		i++;
-	return (line[i] - str[i]);
+		if (!str[i])
+			return (0);
+	}
+	return (line[y] - str[i]);
 }
