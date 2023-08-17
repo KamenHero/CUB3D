@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:48:57 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/16 14:33:39 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/08/17 12:58:22 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,12 @@ typedef struct s_player
 	int	y;
 }		t_player;
 
-
+typedef struct s_ijx
+{
+	int	i;
+	int	j;
+	int	x;
+}		t_ijx;
 
 typedef struct s_component
 {
