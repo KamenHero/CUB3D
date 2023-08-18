@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:14:33 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/16 16:15:10 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/08/18 15:48:24 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@ t_data	*initialdata(void)
 	data = malloc(sizeof(t_data));
 	data->comp = malloc(sizeof(t_component));
 	player = malloc(sizeof(t_player));
+	data->f1 = malloc(sizeof(t_rgb));
+	data->c1 = malloc(sizeof(t_rgb));
+	data->f1->r = 0;
+	data->f1->g = 0;
+	data->f1->b = 0;
+	data->c1->r = 0;
+	data->c1->g = 0;
+	data->c1->b = 0;
 	data->no = NULL;
 	data->so = NULL;
 	data->we = NULL;
@@ -68,4 +76,14 @@ int	ft_strcmp(char *line, const char *str, int y)
 			return (0);
 	}
 	return (line[y] - str[i]);
+}
+
+void	freedouble(char	**str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		free(str[i++]);
+	free(str);
 }

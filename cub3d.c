@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:23:58 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/17 17:15:47 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/08/18 16:00:30 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,9 +125,7 @@ char	**map(char **file, int start, int len)
 			j++;
 		}
 		map[i] = malloc(sizeof(char) * (j + 1));
-		map[i] =;
-
-	i = 0; ft_map2d(file[start], map[i], j);
+		map[i] = ft_map2d(file[start], map[i], j);
 		i++;
 		start++;
 	}
@@ -141,9 +139,7 @@ void	initialpars(t_data *data, char **file)
 	int		len;
 	int		start;
 
-	len = 0;;
-
-	i = 0;
+	len = 0;
 	start = 0;
 	ijx.i = 0;
 	ijx.x = 0;
@@ -157,9 +153,7 @@ void	initialpars(t_data *data, char **file)
 			continue ;
 		}
 		if (ijx.x == 0)
-		{;
-
-	i = 0;
+		{
 			data->no = ft_checkingpath(file[ijx.i], "NO", ijx.j);
 			ijx.i++;
 			ijx.x++;
@@ -213,6 +207,68 @@ void	initialpars(t_data *data, char **file)
 	data->map = map(file, start, len);
 }
 
+void	rgbs(char **splitted, t_rgb *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (splitted[i])
+	{
+		j = 0;
+		while(splitted[i][j])
+		{
+			if (!ft_isdigit(splitted[i][j]))
+				(ft_putendl_fd("error: map invalid", 2), exit(1));
+			j++;
+		}
+		i++;
+	}
+	data->r = ft_atoi(splitted[0]);
+	data->g = ft_atoi(splitted[1]);
+	data->b = ft_atoi(splitted[2]);
+}
+
+void	checkcolorsdigits(int i)
+{
+	if (i < 0 || i > 255)
+		(ft_putendl_fd("error: map invalid", 2), exit(1));
+}
+
+void	checkcolors(t_data *data)
+{
+	checkcolorsdigits(data->f1->r);
+	checkcolorsdigits(data->f1->g);
+	checkcolorsdigits(data->f1->b);
+	checkcolorsdigits(data->c1->r);
+	checkcolorsdigits(data->c1->g);
+	checkcolorsdigits(data->c1->b);
+}
+
+void	checkerrors(t_data *data)
+{
+	char	**splitted;
+	int		i;
+
+	i = 0;
+	splitted = ft_split(data->f, ',');
+	while(splitted[i])
+		i++;
+	if (i != 3)
+		(ft_putendl_fd("error: map invalid", 2), exit(1));
+	rgbs(splitted, data->f1);
+	freedouble(splitted);
+	i = 0;
+	splitted = ft_split(data->c, ',');
+	while(splitted[i])
+		i++;
+	if (i != 3)
+		(ft_putendl_fd("error: map invalid", 2), exit(1));
+	rgbs(splitted, data->c1);
+	freedouble(splitted);
+	checkcolors(data);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -228,8 +284,15 @@ int	main(int argc, char **argv)
 	data = initialdata();
 	file = mapping(argv[1]);
 	initialpars(data, file);
+	freedouble(file);
+	checkerrors(data);
+	printf("%d\n", data->c1->r);
+	printf("%d\n", data->c1->g);
+	printf("%d\n", data->c1->b);
+	printf("%d\n", data->f1->r);
+	printf("%d\n", data->f1->g);
+	printf("%d\n", data->f1->b);
 	printf("%s\n", data->no);
-	printf("%s\n", data->so);
 	printf("%s\n", data->we);
 	printf("%s\n", data->ea);
 	printf("%s\n", data->f);
