@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:23:58 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/18 16:00:30 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/08/18 16:59:30 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,21 @@ int	ft_len(char *file, int i)
 	return(len);
 }
 
+int	ft_len2(char *file, int i)
+{
+	int	len;
+
+	len = 0;
+	while (file[i])
+	{
+		if (file[i] == '\n')
+			break;
+		i++;
+		len++;
+	}
+	return(len);
+}
+
 char*	ft_checkingpath(char *file, const char *str, int i)
 {
 	char	*ptr;
@@ -51,6 +66,36 @@ char*	ft_checkingpath(char *file, const char *str, int i)
 		i += 2;
 		i = ft_skipping(file, i);
 		len = ft_len(file, i);
+		ptr = malloc(sizeof(char) * (len + 1));
+		while (y < len)
+		{
+			ptr[y] = file[i];
+			i++;
+			y++;
+		}
+		ptr[y] = '\0';
+	}
+	else
+	{
+		ft_putendl_fd("Error: need a compass", 2);
+		exit (1);
+	}
+	return (ptr);
+}
+
+char*	ft_checkingpath2(char *file, const char *str, int i)
+{
+	char	*ptr;
+	int	len;
+	int	y;
+
+	len = 0;
+	y = 0;
+	if (ft_strcmp(file, str, i) == 0)
+	{
+		i += 1;
+		i = ft_skipping(file, i);
+		len = ft_len2(file, i);
 		ptr = malloc(sizeof(char) * (len + 1));
 		while (y < len)
 		{
@@ -172,6 +217,7 @@ void	initialpars(t_data *data, char **file)
 			ijx.i++;
 			ijx.x++;
 			continue;
+
 		}
 		if (ijx.x == 3)
 		{
@@ -182,14 +228,14 @@ void	initialpars(t_data *data, char **file)
 		}
 		if (ijx.x == 4)
 		{
-			data->f = ft_checkingpath(file[ijx.i], "F", ijx.j);
+			data->f = ft_checkingpath2(file[ijx.i], "F", ijx.j);
 			ijx.i++;
 			ijx.x++;
 			continue;
 		}
 		if (ijx.x == 5)
 		{
-			data->c = ft_checkingpath(file[ijx.i], "C", ijx.j);
+			data->c = ft_checkingpath2(file[ijx.i], "C", ijx.j);
 			ijx.i++;
 			ijx.x++;
 			continue;
@@ -207,6 +253,26 @@ void	initialpars(t_data *data, char **file)
 	data->map = map(file, start, len);
 }
 
+void	checkspaces(char *str)
+{
+	int	i;
+	int	x;
+
+	i = 0;
+	x = 0;
+	while (str[i])
+	{
+		if (x == 0  && ft_isdigit(str[i]))
+			x = 1;
+		if (x == 1 && (str[i] == ' ' || str[i] == '\t'))
+		{
+			if (str[i + 1] && ft_isdigit(str[i + 1]))
+				(ft_putendl_fd("error: map invalid", 2), exit(1));
+		}
+		i++;
+	}
+}
+
 void	rgbs(char **splitted, t_rgb *data)
 {
 	int	i;
@@ -216,9 +282,13 @@ void	rgbs(char **splitted, t_rgb *data)
 	while (splitted[i])
 	{
 		j = 0;
+		checkspaces(splitted[i]);
 		while(splitted[i][j])
 		{
-			if (!ft_isdigit(splitted[i][j]))
+			while (splitted[i][j] == ' ' || splitted[i][j] == '\n')
+				j++;
+			if (!ft_isdigit(splitted[i][j]) && splitted[i][j] == ' '
+				&& splitted[i][j] == '\n')	
 				(ft_putendl_fd("error: map invalid", 2), exit(1));
 			j++;
 		}
