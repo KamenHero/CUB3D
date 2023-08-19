@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:23:58 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/18 16:59:30 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/08/19 14:26:37 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,19 +115,12 @@ char*	ft_checkingpath2(char *file, const char *str, int i)
 
 void	ft_skipto10(char **file, t_ijx ijx)
 {
-	int	i;
-
-	i = 0;
 	while (file[ijx.i][ijx.j] != '\n')
 	{
 		if (file[ijx.i][ijx.j] == ' '|| file[ijx.i][ijx.j] == '\t')
 			ijx.j = ft_skipping(file[ijx.i], ijx.j);
 		if (!file[ijx.i][ijx.j])
 			break ;
-		if (file[ijx.i][ijx.j] == 'N' && file[ijx.i][ijx.j] == 'S'
-			&& file[ijx.i][ijx.j] == 'E' && file[ijx.i][ijx.j] == 'W'
-			&& file[ijx.i][ijx.j] == '0' && file[ijx.i][ijx.j] == '1')
-			i++;
 		if (file[ijx.i][ijx.j] != 'N' && file[ijx.i][ijx.j] != 'S'
 			&& file[ijx.i][ijx.j] != 'E' && file[ijx.i][ijx.j] != 'W'
 			&& file[ijx.i][ijx.j] != '0' && file[ijx.i][ijx.j] != '1')
@@ -176,6 +169,19 @@ char	**map(char **file, int start, int len)
 	}
 	map[i] = NULL;
 	return (map);
+}
+
+int	ft_checklen(char **file, int *i)
+{
+	int	len;
+
+	len = 0;
+	while (file[*i])
+	{
+		len++;
+		(*i)++;
+	}
+	return (len);
 }
 
 void	initialpars(t_data *data, char **file)
@@ -243,7 +249,8 @@ void	initialpars(t_data *data, char **file)
 		if (ijx.x == 6)
 		{
 			ft_skipto10(file, ijx);
-			len++;
+			len = ft_checklen(file, &ijx.i);
+			break;
 		}
 		ijx.i++;
 	}
