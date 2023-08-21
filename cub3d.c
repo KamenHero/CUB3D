@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:23:58 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/19 14:26:37 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/08/21 16:47:59 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -346,6 +346,58 @@ void	checkerrors(t_data *data)
 	checkcolors(data);
 }
 
+void	ft_checkplayer(char **map, size_t i, size_t j, size_t *x)
+{
+	if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
+				|| map[i][j] == 'W')
+		(*x)++;
+	if (!map[i + 1][j] || !map[i - 1][j])
+				(ft_putendl_fd("error: map invalid", 2), exit(1));
+	if (map[i + 1][j] == ' ' || map[i + 1][j] == '\t')
+				(ft_putendl_fd("error: map invalid", 2), exit(1));
+	if (map[i - 1][j] == ' ' || map[i - 1][j] == '\t')
+				(ft_putendl_fd("error: map invalid", 2), exit(1));
+	if (map[i][j + 1] == ' ' || map[i][j + 1] == '\t')
+		(ft_putendl_fd("error: map invalid", 2), exit(1));
+	if (map[i][j - 1] == ' ' || map[i][j - 1] == '\t')
+		(ft_putendl_fd("error: map invalid", 2), exit(1));
+	if ((*x) != 1 )
+		(ft_putendl_fd("error: map invalid", 2), exit(1));
+}
+
+void	checkwalls(char **map)
+{
+	size_t	i;
+	size_t	j;
+	size_t	x;
+
+	i = 0;
+	x = 0;
+	while(map[i])
+	{
+		j = 0;
+		while (map[i][j] == ' ' || map[i][j] == '\t')
+			j++;
+		if (!map[i][j])
+		{
+			i++;
+			continue;
+		}
+		if (map[i][j] == '0')
+			(ft_putendl_fd("error: map invalid", 2), exit(1));
+		while (map[i][j])
+		{
+			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
+				|| map[i][j] == 'W' || map[i][j] == '0')
+				ft_checkplayer(map, i, j, &x);
+			j++;
+		}
+		if (map[i][j - 1] == '0')
+			(ft_putendl_fd("error: map invalid", 2), exit(1));
+		i++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -363,17 +415,18 @@ int	main(int argc, char **argv)
 	initialpars(data, file);
 	freedouble(file);
 	checkerrors(data);
-	printf("%d\n", data->c1->r);
-	printf("%d\n", data->c1->g);
-	printf("%d\n", data->c1->b);
-	printf("%d\n", data->f1->r);
-	printf("%d\n", data->f1->g);
-	printf("%d\n", data->f1->b);
-	printf("%s\n", data->no);
-	printf("%s\n", data->we);
-	printf("%s\n", data->ea);
-	printf("%s\n", data->f);
-	printf("%s\n", data->c);
+	checkwalls(data->map);
+	// printf("%d\n", data->c1->r);
+	// printf("%d\n", data->c1->g);
+	// printf("%d\n", data->c1->b);
+	// printf("%d\n", data->f1->r);
+	// printf("%d\n", data->f1->g);
+	// printf("%d\n", data->f1->b);
+	// printf("%s\n", data->no);
+	// printf("%s\n", data->we);
+	// printf("%s\n", data->ea);
+	// printf("%s\n", data->f);
+	// printf("%s\n", data->c);
 	while (data->map[i])
 	{
 		printf("%s\n", data->map[i]);
