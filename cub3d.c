@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:23:58 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/21 16:47:59 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/08/21 16:55:39 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -427,9 +427,10 @@ int	main(int argc, char **argv)
 	// printf("%s\n", data->ea);
 	// printf("%s\n", data->f);
 	// printf("%s\n", data->c);
-	while (data->map[i])
-	{
-		printf("%s\n", data->map[i]);
-		i++;
-	}
+	// while (data->map[i])
+	// {
+	// 	printf("%s\n", data->map[i]);
+	// 	i++;
+	// }
+	screen_st(data);
 }

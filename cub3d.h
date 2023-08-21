@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:48:57 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/18 15:47:58 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/08/21 16:54:07 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 # include <fcntl.h>
 # include "./libft/libft.h"
 # include "./gnl/get_next_line.h"
-
+# include <math.h>
+#include <mlx.h>
 
 typedef struct s_player
 {
@@ -57,10 +58,35 @@ typedef struct s_data
 	t_component	*comp;
 }				t_data;
 
+typedef struct	img {
+	void	*img;
+	char	*addr;
+	void	*mlx;
+	void	*mlx_win;
+	char	**map;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		s_hight;
+	int		s_wide;
+	double		x;
+	double		y;
+	float		dx;
+	float		dy;
+	double		angel;
+	t_data		*data;
+}	t_img;
+
 void	ft_cuberror(char *str);
 t_data	*initialdata(void);
 char	**mapping(char *arg);
 char    **ft_splitting(char *str, int i, char c);
 int		ft_strcmp(char *line, const char *str, int y);
 void	freedouble(char	**str);
+void	screen_st(t_data *data);
+int	ft_move(int key, t_img *img);
+void	pixel_put(t_img *data, int x, int y, int color);
+void	draw_player(t_img *img, double angle);
+void	draw_line(t_img *img, double x, double y, double x0, double y0);
+void	ft(t_img	*img);
 #endif
