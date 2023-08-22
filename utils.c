@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:14:33 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/18 15:48:24 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/08/22 16:21:22 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,9 @@ void	ft_cuberror(char *str)
 
 t_data	*initialdata(void)
 {
-	t_data	*data;
-	t_player	*player;
+	t_data		*data;
 
 	data = malloc(sizeof(t_data));
-	data->comp = malloc(sizeof(t_component));
-	player = malloc(sizeof(t_player));
 	data->f1 = malloc(sizeof(t_rgb));
 	data->c1 = malloc(sizeof(t_rgb));
 	data->f1->r = 0;
@@ -56,11 +53,7 @@ t_data	*initialdata(void)
 	data->c = NULL;
 	data->f = NULL;
 	data->map = NULL;
-	player->x = 0;
-	player->y = 0;
-	data->comp->leny = 0;
-	data->comp->player = player;
-	return(data);
+	return (data);
 }
 
 int	ft_strcmp(char *line, const char *str, int y)
@@ -86,4 +79,24 @@ void	freedouble(char	**str)
 	while (str[i])
 		free(str[i++]);
 	free(str);
+}
+
+void	checkspaces(char *str)
+{
+	int	i;
+	int	x;
+
+	i = 0;
+	x = 0;
+	while (str[i])
+	{
+		if (x == 0 && ft_isdigit(str[i]))
+			x = 1;
+		if (x == 1 && (str[i] == ' ' || str[i] == '\t'))
+		{
+			if (str[i + 1] && ft_isdigit(str[i + 1]))
+				(ft_putendl_fd("error: map invalid", 2), exit(1));
+		}
+		i++;
+	}
 }

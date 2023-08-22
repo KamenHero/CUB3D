@@ -7,6 +7,12 @@ SRCS = 	cub3d.c\
 		splitting.c\
 		gnl/get_next_line.c\
 		gnl/get_next_line_utils.c\
+		checkingpath.c\
+		colors.c\
+		errors.c\
+		mapping.c\
+		utils2.c\
+		parsing.c\
 
 
 CC = gcc-11
