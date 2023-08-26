@@ -6,7 +6,7 @@
 /*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:48:57 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/21 16:54:07 by onaciri          ###   ########.fr       */
+/*   Updated: 2023/08/22 16:11:16 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct	img {
 	int		endian;
 	int		s_hight;
 	int		s_wide;
+	double		fov;
+	int			num_ray;
 	double		x;
 	double		y;
 	float		dx;
@@ -87,6 +89,5 @@ void	screen_st(t_data *data);
 int	ft_move(int key, t_img *img);
 void	pixel_put(t_img *data, int x, int y, int color);
 void	draw_player(t_img *img, double angle);
-void	draw_line(t_img *img, double x, double y, double x0, double y0);
-void	ft(t_img	*img);
+void	draw_line(t_img	*img);
 #endif

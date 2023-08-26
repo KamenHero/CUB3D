@@ -6,7 +6,7 @@
 /*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:23:58 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/21 16:55:39 by onaciri          ###   ########.fr       */
+/*   Updated: 2023/08/22 07:17:43 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,7 +256,7 @@ void	initialpars(t_data *data, char **file)
 	}
 	if (len == 0)
 		(ft_putendl_fd("error: map invalid", 2), exit(1));
-	start = ijx.i - len - 2;
+	start = ijx.i - len;
 	data->map = map(file, start, len);
 }
 
@@ -292,11 +292,14 @@ void	rgbs(char **splitted, t_rgb *data)
 		checkspaces(splitted[i]);
 		while(splitted[i][j])
 		{
+			//printf("splited %c i %d %d %zu\n",splitted[i][j], i, j, ft_strlen(splitted[i]) );
 			while (splitted[i][j] == ' ' || splitted[i][j] == '\n')
 				j++;
 			if (!ft_isdigit(splitted[i][j]) && splitted[i][j] == ' '
 				&& splitted[i][j] == '\n')	
 				(ft_putendl_fd("error: map invalid", 2), exit(1));
+			if (!splitted[i][j])
+				break;
 			j++;
 		}
 		i++;
@@ -361,8 +364,6 @@ void	ft_checkplayer(char **map, size_t i, size_t j, size_t *x)
 		(ft_putendl_fd("error: map invalid", 2), exit(1));
 	if (map[i][j - 1] == ' ' || map[i][j - 1] == '\t')
 		(ft_putendl_fd("error: map invalid", 2), exit(1));
-	if ((*x) != 1 )
-		(ft_putendl_fd("error: map invalid", 2), exit(1));
 }
 
 void	checkwalls(char **map)
@@ -396,15 +397,15 @@ void	checkwalls(char **map)
 			(ft_putendl_fd("error: map invalid", 2), exit(1));
 		i++;
 	}
+	if (x != 1 )
+		(ft_putendl_fd("error: map invalid", 2), exit(1));
 }
 
 int	main(int argc, char **argv)
 {
 	t_data	*data;
 	char	**file;
-	int	i;
 
-	i = 0;
 	(void)argc;
 	(void)data;
 	if (argc != 2)
