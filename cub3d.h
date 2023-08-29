@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:48:57 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/22 16:20:59 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/08/27 15:58:32 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ void	checkerrors(t_data *data);
 void	ft_checkplayer(char **map, size_t i, size_t *x);
 void	checkwalls(char **map);
 void	initialpars(t_data *data, char **file);
+int		initialutilhelp(t_data *data, char **file, t_ijx *ijx);
 
 #endif

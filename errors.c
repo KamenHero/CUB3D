@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:23:53 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/22 15:56:27 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/08/27 15:53:52 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,26 @@ void	checkfirstwall(char *map)
 	}
 }
 
+void	checkother(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (!strchr("10NSWE", map[i][j]) && map[i][j] != ' '
+				&& map[i][j] != '\t')
+				(ft_putendl_fd("error: map invalid2", 2), exit(1));
+			j++;
+		}
+		i++;
+	}
+}
+
 void	checkwalls(char **map)
 {
 	size_t	i;
@@ -98,4 +118,5 @@ void	checkwalls(char **map)
 	}
 	if (x != 1)
 		(ft_putendl_fd("error: map invalid", 2), exit(1));
+	checkother(map);
 }
