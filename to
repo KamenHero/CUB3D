@@ -1,0 +1,60 @@
+   // // double rays;
+    // // double f_angel;
+    double  ax;
+    double  ay;
+    double  xa;
+    double  ya;
+    int     i = 0;
+
+    // rays = 60/1280;
+    // f_angel = img->angel;
+    ya = 64;
+    if (img->angel >= 0 && img->angel < M_PI)//facing down
+    {
+        ay = ((int)img->y / 64) * 64 -1;
+        ya = -64;
+    }
+    else if (img->angel >= M_PI && img->angel <  2 * M_PI)//facing UP
+        ay = ((int)img->y / 64) * 64 + 64;
+    ax = img->x + (img->y - ay) / tan(60 * (180/M_PI));
+    printf("chhhh%f %f %d %d\n", ax, ay, (int)(ax / 64), (int)(ay / 64));
+    xa = 64 / tan(60);
+    draw_line(img, 30, ax, ay);
+    while (i < 10)
+    {
+        ax += xa;
+        ay += ya;
+        draw_line(img, 30, ax, ay);
+        if (has_wall(img, ax, ay))
+            break ;
+        i++;
+    }
+  //  double ray_angle, 
+    // double ray_x, ray_y;
+
+    // for (int i = 0; i < 50; i++) {
+    //    // ray_angle = img->angel - (60 / 2) + (i * 60 / 1920);
+    //     ray_x = img->x;
+    //     ray_y = img->y;
+
+    //     double ray_dir_x = cos(img->angel);
+    //     double ray_dir_y = sin(img->angel);
+
+    //     while (ray_x >= 0 && ray_x < 1920 && ray_y >= 0 && ray_y < 766) 
+    //     {
+    //         int map_x = (int)(ray_x / 64); // Assuming each grid cell is 64x64 pixels
+    //         int map_y = (int)(ray_y / 64);
+
+    //         if (map_x >= 0 && map_x < 760 && map_y >= 0 && map_y < 1920) {
+    //             if (img->map[map_x][map_y] == '1') {
+    //                 // Ray hit a wall, stop casting
+    //                 break;
+    //             }
+    //             draw_line(img, 30, ray_x, ray_y);
+    //         }
+
+    //         // Move the ray's position along its path
+    //         ray_x += ray_dir_x;
+    //         ray_y += ray_dir_y;
+    //     }
+        

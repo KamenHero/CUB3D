@@ -6,7 +6,7 @@
 /*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:48:57 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/22 16:11:16 by onaciri          ###   ########.fr       */
+/*   Updated: 2023/08/30 09:39:00 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,20 @@ typedef struct s_data
 	t_component	*comp;
 }				t_data;
 
-typedef struct	img {
+
+typedef struct s_ray
+{
+	float	ray_angel;
+	float	vwallhitx;
+	float	vwallhity;
+	float	hwallhitx;
+	float	hwallhity;
+	float	x;
+	float	y;
+	float	dis;
+}	t_ray;
+
+typedef struct	s_img {
 	void	*img;
 	char	*addr;
 	void	*mlx;
@@ -70,13 +83,13 @@ typedef struct	img {
 	int		s_hight;
 	int		s_wide;
 	double		fov;
-	int			num_ray;
 	double		x;
 	double		y;
 	float		dx;
 	float		dy;
 	double		angel;
 	t_data		*data;
+	t_ray		*ray;
 }	t_img;
 
 void	ft_cuberror(char *str);
@@ -89,5 +102,11 @@ void	screen_st(t_data *data);
 int	ft_move(int key, t_img *img);
 void	pixel_put(t_img *data, int x, int y, int color);
 void	draw_player(t_img *img, double angle);
-void	draw_line(t_img	*img);
+void	draw_line(t_img	*img, int color);
+void    raycast(t_img *img);
+int		has_wall(t_img *img, double i, double j);
+void    rem_raycast(t_img *img);
+void creat_map(t_img *img);
+void	draw_box(t_img *img, int x, int y, char c);
+float	distancepoints(double x1, double y1, double x2, double y2);
 #endif

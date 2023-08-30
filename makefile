@@ -9,6 +9,7 @@ SRCS = 	cub3d.c\
 		gnl/get_next_line_utils.c\
 		screen.c\
 		move_p.c\
+		raycast.c\
 
 
 CC = gcc-11
