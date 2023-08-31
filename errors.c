@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:23:53 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/27 15:53:52 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/08/31 12:18:44 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	checkerrors(t_data *data)
 		i++;
 	if (i != 3)
 		(ft_putendl_fd("error: map invalid", 2), exit(1));
-	rgbs(splitted, data->f1);
+	rgbs(splitted, &data->f1);
 	freedouble(splitted);
 	i = 0;
 	splitted = ft_split(data->c, ',');
@@ -31,7 +31,7 @@ void	checkerrors(t_data *data)
 		i++;
 	if (i != 3)
 		(ft_putendl_fd("error: map invalid", 2), exit(1));
-	rgbs(splitted, data->c1);
+	rgbs(splitted, &data->c1);
 	freedouble(splitted);
 	checkcolors(data);
 }

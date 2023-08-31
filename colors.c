@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:22:36 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/22 15:59:09 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/08/31 12:15:59 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	checkcolorsdigits(int i)
 
 void	checkcolors(t_data *data)
 {
-	checkcolorsdigits(data->f1->r);
-	checkcolorsdigits(data->f1->g);
-	checkcolorsdigits(data->f1->b);
-	checkcolorsdigits(data->c1->r);
-	checkcolorsdigits(data->c1->g);
-	checkcolorsdigits(data->c1->b);
+	checkcolorsdigits(data->f1.r);
+	checkcolorsdigits(data->f1.g);
+	checkcolorsdigits(data->f1.b);
+	checkcolorsdigits(data->c1.r);
+	checkcolorsdigits(data->c1.g);
+	checkcolorsdigits(data->c1.b);
 }

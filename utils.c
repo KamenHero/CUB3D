@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:14:33 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/22 16:21:22 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/08/31 12:28:08 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,14 @@ void	ft_cuberror(char *str)
 	}
 }
 
-t_data	*initialdata(void)
+void	initialdata(t_data *data)
 {
-	t_data		*data;
-
-	data = malloc(sizeof(t_data));
-	data->f1 = malloc(sizeof(t_rgb));
-	data->c1 = malloc(sizeof(t_rgb));
-	data->f1->r = 0;
-	data->f1->g = 0;
-	data->f1->b = 0;
-	data->c1->r = 0;
-	data->c1->g = 0;
-	data->c1->b = 0;
+	data->f1.r = 0;
+	data->f1.g = 0;
+	data->f1.b = 0;
+	data->c1.r = 0;
+	data->c1.g = 0;
+	data->c1.b = 0;
 	data->no = NULL;
 	data->so = NULL;
 	data->we = NULL;
@@ -53,7 +48,6 @@ t_data	*initialdata(void)
 	data->c = NULL;
 	data->f = NULL;
 	data->map = NULL;
-	return (data);
 }
 
 int	ft_strcmp(char *line, const char *str, int y)
