@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:23:58 by oryadi            #+#    #+#             */
-/*   Updated: 2023/09/11 11:45:15 by onaciri          ###   ########.fr       */
+/*   Updated: 2023/09/12 17:05:56 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,16 @@ void	free_data(t_data *data)
 	free(data);
 }
 
+int	create_hex(int r, int g, int b)
+{
+	return (r << 16 | g << 8 | b);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
 	char	**file;
 
-	(void)argc;
-	(void)data;
 	if (argc != 2)
 		(ft_putendl_fd("error", 2), exit(1));
 	ft_cuberror(argv[1]);
@@ -41,6 +44,8 @@ int	main(int argc, char **argv)
 	freedouble(file);
 	checkerrors(data);
 	checkwalls(data->map);
+	data->fc.f = create_hex(data->f1.r, data->f1.g, data->f1.b);
+	data->fc.c = create_hex(data->c1.r, data->c1.g, data->c1.b);
 	screen_st(data);
 	free_data(data);
 }

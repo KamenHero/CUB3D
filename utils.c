@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:14:33 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/31 12:28:08 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/09/12 17:04:02 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	initialdata(t_data *data)
 	data->c = NULL;
 	data->f = NULL;
 	data->map = NULL;
+	data->fc.c = 0;
+	data->fc.f = 0;
 }
 
 int	ft_strcmp(char *line, const char *str, int y)

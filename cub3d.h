@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:48:57 by oryadi            #+#    #+#             */
-/*   Updated: 2023/09/11 11:44:18 by onaciri          ###   ########.fr       */
+/*   Updated: 2023/09/12 17:04:08 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ typedef struct s_rgb
 	int	b;
 }		t_rgb;
 
+typedef struct s_fc
+{
+	int			f;
+	int			c;
+}				t_fc;
+
 typedef struct s_data
 {
 	char		*no;
@@ -42,6 +48,7 @@ typedef struct s_data
 	char		*c;
 	t_rgb		f1;
 	t_rgb		c1;
+	t_fc		fc;
 	char		**map;
 }				t_data;
 
@@ -87,7 +94,6 @@ typedef struct	s_img {
 	t_ray		*ray;
 }	t_img;
 
-
 void	ft_cuberror(char *str);
 void	initialdata(t_data *data);
 char	**mapping(char *arg);
@@ -113,15 +119,16 @@ void	checkwalls(char **map);
 void	initialpars(t_data *data, char **file);
 int		initialutilhelp(t_data *data, char **file, t_ijx *ijx);
 void	screen_st(t_data *data);
-int	ft_move(int key, t_img *img);
+int		ft_move(int key, t_img *img);
 void	pixel_put(t_img *data, int x, int y, int color);
 void	draw_player(t_img *img, double angle);
 void	draw_line(t_img	*img, int color);
 void    raycast(t_img *img);
 int		has_wall(t_img *img, double i, double j);
 void    rem_raycast(t_img *img);
-void creat_map(t_img *img);
+void	creat_map(t_img *img);
 void	draw_box(t_img *img, int x, int y, char c);
 double	distancepoints(double x1, double y1, double x2, double y2);
 void    draw_3d_line(t_img *img, int i);
+
 #endif
