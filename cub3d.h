@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:48:57 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/31 12:29:29 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/09/11 11:44:18 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include <fcntl.h>
 # include "./libft/libft.h"
 # include "./gnl/get_next_line.h"
+# include <math.h>
+#include <mlx.h>
 
 typedef struct s_ijx
 {
@@ -43,6 +45,49 @@ typedef struct s_data
 	char		**map;
 }				t_data;
 
+typedef struct s_ray
+{
+	double	ray_angel;
+	double	vwallhitx;
+	double	vwallhity;
+	double	hwallhitx;
+	double	hwallhity;
+	double	x;
+	double	y;
+	double	dis;
+}	t_ray;
+
+typedef struct	s_img {
+	void	*img;
+	char	*addr;
+	void	*mlx;
+	void	*mlx_win;
+	char	**map;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		s_hight;
+	int		s_wide;
+	double		fov;
+	double		x;
+	double		y;
+	double		dx;
+	double		dy;
+	double		angel;
+	double		dis_plane;
+	double		x3d;
+	double		y3d;
+	double		endx;
+	double		endy;
+	double		deltax;
+	double		deltay;
+	double		pixel3d;
+	int			map_y;
+	t_data		*data;
+	t_ray		*ray;
+}	t_img;
+
+
 void	ft_cuberror(char *str);
 void	initialdata(t_data *data);
 char	**mapping(char *arg);
@@ -67,5 +112,16 @@ void	ft_checkplayer(char **map, size_t i, size_t *x);
 void	checkwalls(char **map);
 void	initialpars(t_data *data, char **file);
 int		initialutilhelp(t_data *data, char **file, t_ijx *ijx);
-
+void	screen_st(t_data *data);
+int	ft_move(int key, t_img *img);
+void	pixel_put(t_img *data, int x, int y, int color);
+void	draw_player(t_img *img, double angle);
+void	draw_line(t_img	*img, int color);
+void    raycast(t_img *img);
+int		has_wall(t_img *img, double i, double j);
+void    rem_raycast(t_img *img);
+void creat_map(t_img *img);
+void	draw_box(t_img *img, int x, int y, char c);
+double	distancepoints(double x1, double y1, double x2, double y2);
+void    draw_3d_line(t_img *img, int i);
 #endif

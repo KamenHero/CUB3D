@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:23:58 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/31 14:59:16 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/09/11 11:45:15 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ int	main(int argc, char **argv)
 	freedouble(file);
 	checkerrors(data);
 	checkwalls(data->map);
+	screen_st(data);
 	free_data(data);
 }

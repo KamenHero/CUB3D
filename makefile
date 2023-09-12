@@ -14,6 +14,10 @@ SRCS = 	cub3d.c\
 		utils.c\
 		utils2.c\
 		utils3.c\
+		screen.c\
+		move_p.c\
+		raycast.c\
+		draw.c\
 
 
 CC = gcc-11
