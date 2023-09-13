@@ -6,7 +6,7 @@
 /*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:40:42 by onaciri           #+#    #+#             */
-/*   Updated: 2023/09/01 14:27:58 by onaciri          ###   ########.fr       */
+/*   Updated: 2023/09/13 15:52:48 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void    draw_3d_line(t_img *img, int i)
 
     img->dis_plane = (img->s_wide / 2);
     img->ray->dis =  cos(img->angel - img->ray->ray_angel) * img->ray->dis;
-    line_height = ((64 / img->ray->dis)) * img->dis_plane;
+    line_height = ((20 / img->ray->dis)) * img->dis_plane;
     img->y3d = (int)(img->s_hight / 2) - (line_height / 2);
     img->endy = (int)(img->s_hight / 2) + (line_height / 2);
     if (img->y3d < 0)
