@@ -1,6 +1,6 @@
 NAME = cub3d
 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g3
+#CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g3
 
 SRCS = 	cub3d.c\
 		splitting.c\

@@ -6,7 +6,7 @@
 /*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 18:57:06 by onaciri           #+#    #+#             */
-/*   Updated: 2023/09/13 15:53:35 by onaciri          ###   ########.fr       */
+/*   Updated: 2023/09/14 17:01:04 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,41 +21,18 @@ double	distancepoints(double x1, double y1, double x2, double y2)
 int	has_wall(t_img *img, double i, double j)
 {
 	int x;
-	//int v;
 	int	y;
-	//int	c;
 
-	// c = 0;
-	// v = 0;
-		if ((int)i < 0 || (int)j > (img->s_wide  ) ||
-		(int)j < 0 || (int)i > (img->s_hight))
-		return (1);
-//	printf("haloa !!!!%f %f|||| %d  %d\n", x, y, (int)x, (int)y);
-	// while (v < 32)
-	// {
-	// 	while (c < 32)
-	// 	{
-			x = (int)j / 20;
-			y = (int)i  / 20;
-			// if (x - (int)x < 0.5 && x - (int)x > 0 )
-			// 	x += 0.4;
-			// if ( y - (int)y < 0.5 && y - (int)y > 0)
-			// 	y += 0.4;
-			
-			//printf("****%s \n%zu\n\n", img->data->map[(int)y], ft_strlen(img->data->map[(int)y]));
-		//	if (y > img->map_y || img->data->map[(int)y])
-			//	return (1);
-			if ((int)y > (int)img->map_y || x >= (int)ft_strlen(img->data->map[(int)y]))
+	if ((int)i < 0 || (int)j > (img->s_wide  ) ||
+	(int)j < 0 || (int)i > (img->s_hight))
+	return (1);
+	x = (int)j / 20;
+	y = (int)i  / 20;
+	if ((int)y > (int)img->map_y 
+		|| x >= (int)ft_strlen(img->data->map[(int)y]))
 				return (1);
 			if ((int)y > (int)img->map_y ||  img->data->map[(int)y][(int)x] == '1')
-			{
-				// printf("has wall%f %f||| %d %d\n", x, y, (int)x, (int)y);
 				return (1);
-			}
-	// 		c++;
-	// 	}
-	// 	v++;
-	// }
 	return (0);
 }
 
@@ -101,69 +78,40 @@ void	draw_line(t_img	*img, int color)
 	}
 }
 
-// void	delet_ply(t_img *img)
-// {
-// 	float 	ci;
-//     float 	cj;
-
-// 	ci = 0;
-// 	while (ci < 32)
-// 	{
-// 		cj = 0;
-// 		while (cj < 32)
-// 		{
-// 			if (ci < 32 && cj < 32)
-// 				pixel_put(img, img->x ,img->ray->ray_angel
-// 	}
-// }
 void	draw_player(t_img *img, double angle)
 {
-    // double 		ci;
-    // double 		cj;
 	double		i;
 	double		j;
 	
-	i = img->x + cos(angle) * 5 ;
-	j = img->y - sin(angle) * 5;
+	i = img->x + cos(angle) * 10;
+	j = img->y - sin(angle) * 10;
 	if (j < 0 || i > (img->s_wide  ) || i < 0 || j > (img->s_hight  ) || has_wall(img, j, i))
 		return ;
 	if (img->data->map[(int)(j / (20 ))][(int)(img->x/(20 ))] == '1' && img->data->map[(int)(img->y/(20 ))][(int)(i / (20))] == '1' )
 				return ;
-	//delet_ply(img);
 	img->x = i;
 	img->y = j;
-	// ci = 0;
-	// while (ci < 32)
-	// {
-	// 	cj = 0;
-	// 	while (cj < 32)
-	// 	{
-			pixel_put(img,  img->x , img->y,  0x00ff00);
-			printf("ho\n");
-	// 		cj++;
-	// 	}
-	// 	ci++;
-	// }
+	pixel_put(img,  img->x , img->y,  0x00ff00);
 }
 
 
 int	ft_move(int key, t_img *img)
 {
-	if (key == 119)//up
+	if (key == 119)
 		draw_player(img, img->angel);
-	else if (key == 115)//down
+	else if (key == 115)
 		draw_player(img, img->angel + (M_PI));
-	else if (key == 100)//left
+	else if (key == 100)
 		draw_player(img, img->angel + (M_PI / 2) );
-	else if (key == 97)//right
+	else if (key == 97)
 		draw_player(img, img->angel - (M_PI / 2));
-	 else if (key == 65363)//
+	 else if (key == 65363)
 	{
 		img->angel += 0.0174533;
 		if (img->angel < 0)
 			img->angel += 2 * M_PI;
 	}
-	 else if (key ==65361)//right an
+	 else if (key ==65361)
 	{		img->angel -= 0.0174533;
 		if (img->angel >= 2 * M_PI)
 			img->angel -= 2 * M_PI;

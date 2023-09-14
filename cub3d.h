@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:48:57 by oryadi            #+#    #+#             */
-/*   Updated: 2023/09/12 17:04:08 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/09/14 10:17:37 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,15 @@ typedef struct s_ray
 	double	dis;
 }	t_ray;
 
+typedef struct t_xpm
+{
+	void	*file;
+	char	*dir;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
+}	t_xpm;
+
 typedef struct	s_img {
 	void	*img;
 	char	*addr;
@@ -90,6 +99,11 @@ typedef struct	s_img {
 	double		deltay;
 	double		pixel3d;
 	int			map_y;
+	int			hitwas;
+	t_xpm		xpm_so;
+	t_xpm		xpm_no;
+	t_xpm		xpm_we;
+	t_xpm		xpm_ea;
 	t_data		*data;
 	t_ray		*ray;
 }	t_img;

@@ -6,7 +6,7 @@
 /*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:46:32 by onaciri           #+#    #+#             */
-/*   Updated: 2023/09/13 15:54:36 by onaciri          ###   ########.fr       */
+/*   Updated: 2023/09/14 16:25:00 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	player_pos(t_img *img)
 			}
 		}
 	}
-	printf("****i == %d %f %f**\n",i, img->x, img->y);
 	img->map_y = i;
 }
 
@@ -59,6 +58,8 @@ void	pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
+	if  (x < 0 || y < 0 || x >= 1280 || y >= 768)
+		return ;
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
@@ -133,9 +134,9 @@ void	screen_st(t_data *data)
 	// 	printf("%s\n", img.data->map[i]);
 	// 	i++;
 	// }
-	printf("lol\n");
+	//printf("%s|%s|%s|%s\n", img.data->so, img.data->ea, img.data->we, img.data->no);
 	player_pos(&img);
-	printf("%f %f\n", img.x / 64, img.y /64);
+	//printf("%f %f\n", img.x / 64, img.y /64);
 	// img.map = malloc(sizeof(char *) * 13);
 	// int i = 0;
 	// while (i < 12)
@@ -162,6 +163,8 @@ void	screen_st(t_data *data)
 	// 	i++;
 	// }
 	int i = -1;
+	int	ls=	20;
+	int ss = 20;
 	while (img.data->map[++i])
 		printf("%s\n", img.data->map[i]);
 	img.fov = 60 * (M_PI / 180);
@@ -172,7 +175,20 @@ void	screen_st(t_data *data)
 	//mlx_hook(img.mlx_win, 3, 1L << 1, &butt_released, &img);
 	//mlx_hook(img.mlx_win, 17, 1L << 17, &clicked_cross, &img);
 	//mlx_loop_hook(img.mlx, &render_next_frame, &img);
-	mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
+	//printf("'so =%s' 'we = %s' ' ea = %s' 'no 0%s'\n\n", data->so, data->we, data->ea, data->no);
+	img.xpm_so.file = mlx_xpm_file_to_image(img.mlx, data->so, &ls, &ss);
+	img.xpm_no.file = mlx_xpm_file_to_image(img.mlx, data->no, &ls, &ss);
+	img.xpm_we.file = mlx_xpm_file_to_image(img.mlx, data->we, &ls, &ss);
+	img.xpm_ea.file = mlx_xpm_file_to_image(img.mlx, data->ea, &ls, &ss);
+	img.xpm_so.dir = mlx_get_data_addr(img.xpm_so.file, &img.xpm_so.bits_per_pixel, &img.xpm_so.size_line, &img.xpm_so.endian);
+	img.xpm_no.dir = mlx_get_data_addr(img.xpm_no.file, &img.xpm_no.bits_per_pixel, &img.xpm_no.size_line, &img.xpm_no.endian);
+	img.xpm_ea.dir = mlx_get_data_addr(img.xpm_ea.file, &img.xpm_ea.bits_per_pixel, &img.xpm_ea.size_line, &img.xpm_ea.endian);
+	img.xpm_we.dir = mlx_get_data_addr(img.xpm_we.file, &img.xpm_we.bits_per_pixel, &img.xpm_we.size_line, &img.xpm_we.endian);
+	//mlx_put_image_to_window(img.mlx, img.mlx_win, img.addr, 0, 0);
+	//mlx_put_image_to_window(img.mlx, img.mlx_win, img.xpm_so.dir, 0, 0);
+	//mlx_put_image_to_window(img.mlx, img.mlx_win, img.xpm_ea.dir, 64, 64);
+	//mlx_put_image_to_window(img.mlx, img.mlx_win, img.xpm_we.dir, 128, 64);
+	//mlx_put_image_to_window(img.mlx, img.mlx_win, img.xpm_no.dir, 128, 0);
 	//draw_line(&img,img.angel, 0xFFFFFF);
 	mlx_loop_hook(img.mlx, sceen, &img);
 	mlx_loop(img.mlx);
