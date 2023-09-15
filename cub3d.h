@@ -6,7 +6,7 @@
 /*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:48:57 by oryadi            #+#    #+#             */
-/*   Updated: 2023/09/14 10:17:37 by onaciri          ###   ########.fr       */
+/*   Updated: 2023/09/15 08:43:55 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ typedef struct	s_img {
 	double		pixel3d;
 	int			map_y;
 	int			hitwas;
+	t_xpm		texUse;
 	t_xpm		xpm_so;
 	t_xpm		xpm_no;
 	t_xpm		xpm_we;
@@ -144,5 +145,6 @@ void	creat_map(t_img *img);
 void	draw_box(t_img *img, int x, int y, char c);
 double	distancepoints(double x1, double y1, double x2, double y2);
 void    draw_3d_line(t_img *img, int i);
+void	free_data(t_data *data);
 
 #endif

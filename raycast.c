@@ -6,7 +6,7 @@
 /*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:54:41 by onaciri           #+#    #+#             */
-/*   Updated: 2023/09/14 17:04:12 by onaciri          ###   ########.fr       */
+/*   Updated: 2023/09/14 19:49:05 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void	horzintal_inter(t_img *img)
 	float	xstep;
 	float	ystep;
 
-	img->ray->hwallhity = (int)(img->y / (20)) * 20;
+	img->ray->hwallhity = (int)(img->y / 20) * 20;
 	if (sin(img->ray->ray_angel) < 0)
 		img->ray->hwallhity += 20  ;
 	img->ray->hwallhitx = img->x + ((img->y - img->ray->hwallhity) / tan(img->ray->ray_angel));
 	ystep = 20;
 	if (sin(img->ray->ray_angel)> 0)
 		ystep *= -1;
-	xstep = (20) / tan(img->ray->ray_angel);
+	xstep = 20 / tan(img->ray->ray_angel);
 	if (cos(img->ray->ray_angel) < 0 && xstep > 0)
 	 	xstep *= -1;
 	if (cos(img->ray->ray_angel) > 0 && xstep < 0)
@@ -64,11 +64,11 @@ void	vertical_inter(t_img *img)
 	float	xstep;
 	float	ystep;
 
-	img->ray->vwallhitx = ((int)(img->x / (20  )) * (20  ));
+	img->ray->vwallhitx = ((int)(img->x / 20) * 20);
 	if (cos(img->ray->ray_angel) >= 0)
-		img->ray->vwallhitx +=   20;
+		img->ray->vwallhitx += 20;
 	img->ray->vwallhity = img->y + ((img->x - img->ray->vwallhitx) * tan(img->ray->ray_angel));
-	xstep = 20  ;
+	xstep = 20;
 	if (cos(img->ray->ray_angel) < 0)
 		xstep *= -1;
 	ystep = (20  ) * tan(img->ray->ray_angel);

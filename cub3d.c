@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:23:58 by oryadi            #+#    #+#             */
-/*   Updated: 2023/09/12 17:05:56 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/09/14 17:40:30 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ int	main(int argc, char **argv)
 	t_data	*data;
 	char	**file;
 
-	if (argc != 2)
-		(ft_putendl_fd("error", 2), exit(1));
-	ft_cuberror(argv[1]);
 	data = malloc(sizeof(t_data));
 	initialdata(data);
 	file = mapping(argv[1]);
