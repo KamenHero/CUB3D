@@ -6,7 +6,7 @@
 /*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:48:57 by oryadi            #+#    #+#             */
-/*   Updated: 2023/09/15 08:43:55 by onaciri          ###   ########.fr       */
+/*   Updated: 2023/09/15 17:40:59 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,14 @@ typedef struct s_data
 typedef struct s_ray
 {
 	double	ray_angel;
-	double	vwallhitx;
-	double	vwallhity;
-	double	hwallhitx;
-	double	hwallhity;
+	double	vx;
+	double	vy;
+	double	hx;
+	double	hy;
 	double	x;
 	double	y;
 	double	dis;
+	int		look;
 }	t_ray;
 
 typedef struct t_xpm
@@ -98,6 +99,7 @@ typedef struct	s_img {
 	double		deltax;
 	double		deltay;
 	double		pixel3d;
+	float		line_height;
 	int			map_y;
 	int			hitwas;
 	t_xpm		texUse;
