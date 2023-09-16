@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:23:53 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/31 12:18:44 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/09/16 19:23:18 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void	ft_checkplayer(char **map, size_t i, size_t *x)
 		if (ft_strchr("NSEW0", map[i][j]))
 		{
 			if (!map[i - 1][j] || !ft_strchr("NSEW01", map[i - 1][j]))
-				(ft_putendl_fd("error: map invalid", 2), exit(1));
+				(ft_putendl_fd("Error: New character unlocked", 2), exit(1));
 			if (!map[i + 1][j] || !ft_strchr("NSEW01", map[i + 1][j]))
-				(ft_putendl_fd("error: map invalid", 2), exit(1));
+				(ft_putendl_fd("Error: New character unlocked", 2), exit(1));
 			if (!ft_strchr("NSEW01", map[i][j + 1]))
-				(ft_putendl_fd("error: map invalid", 2), exit(1));
+				(ft_putendl_fd("Error: New character unlocked", 2), exit(1));
 			if (!ft_strchr("NSEW01", map[i][j - 1]))
-				(ft_putendl_fd("error: map invalid", 2), exit(1));
+				(ft_putendl_fd("Error: New character unlocked", 2), exit(1));
 		}
 		j++;
 	}
@@ -68,7 +68,7 @@ void	checkfirstwall(char *map)
 	while (map[i])
 	{
 		if (map[i] != '1' && map[i] != ' ' && map[i] != '\t')
-			(ft_putendl_fd("error: map invalid2", 2), exit(1));
+			(ft_putendl_fd("Error: we need to build a wall", 2), exit(1));
 		i++;
 	}
 }
@@ -86,7 +86,7 @@ void	checkother(char **map)
 		{
 			if (!strchr("10NSWE", map[i][j]) && map[i][j] != ' '
 				&& map[i][j] != '\t')
-				(ft_putendl_fd("error: map invalid2", 2), exit(1));
+				(ft_putendl_fd("Wait a minute... who are you ?", 2), exit(1));
 			j++;
 		}
 		i++;
@@ -103,7 +103,7 @@ void	checkwalls(char **map)
 	while (map[i])
 	{
 		if (map[i][0] == '0')
-			(ft_putendl_fd("error: map invalid", 2), exit(1));
+			(ft_putendl_fd("Error: From hero to zero", 2), exit(1));
 		if (i == 0)
 			checkfirstwall(map[i]);
 		else if (!map[i + 1])
@@ -113,10 +113,10 @@ void	checkwalls(char **map)
 			ft_checkplayer(map, i, &x);
 		}
 		if (map[i][ft_strlenn(map[i])] == '0')
-			(ft_putendl_fd("error: 0 felekher", 2), exit(1));
+			(ft_putendl_fd("error: the end after the beginning", 2), exit(1));
 		i++;
 	}
 	if (x != 1)
-		(ft_putendl_fd("error: map invalid", 2), exit(1));
+		(ft_putendl_fd("error: Here comes a new challenger", 2), exit(1));
 	checkother(map);
 }

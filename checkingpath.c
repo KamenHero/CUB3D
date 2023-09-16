@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:17:58 by oryadi            #+#    #+#             */
-/*   Updated: 2023/09/16 18:08:15 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/09/16 19:14:14 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	checkafter(char *file, int i)
 			break ;
 		else
 		{
-			ft_putendl_fd("Error: need a l3ba", 2);
+			ft_putendl_fd("Error: one option pls", 2);
 			exit (1);
 		}
 		i++;
@@ -75,7 +75,7 @@ void	checkdig(char *file, int i)
 			break ;
 		if (!ft_isdigit(file[i]))
 		{
-			ft_putendl_fd("Error: zyada", 2);
+			ft_putendl_fd("Error: are you daltonien?", 2);
 			exit (1);
 		}
 		i++;

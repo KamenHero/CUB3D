@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:40:42 by onaciri           #+#    #+#             */
-/*   Updated: 2023/09/16 18:10:36 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/09/16 19:08:41 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	texture(t_img *img, int i, int y_tex)
 	float	fin;
 
 	if (img->hitwas == 1)
-		xoff = (int)((img->ray->y / 20) * 64) % 64;
+		xoff = (int)((img->ray->y / 20) * 100) % 100;
 	else
-		xoff = (int)((img->ray->x / 20) * 64) % 64;
+		xoff = (int)((img->ray->x / 20) * 100) % 100;
 	fin = (y_tex * img->texuse.size_line)
 		+ (xoff * (img->texuse.bits_per_pixel / 8));
 	pixel_put(img, i, (int)img->y3d,

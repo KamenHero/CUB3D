@@ -1,9 +1,9 @@
-          NO   xpms/1.xpm
-    WE       xpms/711892.xpm
-SO xpms/2.xpm
-           EA xpms/3.xpm
-    F  255, 255,   255      
- C 0, 0,0 
+          NO   xpms/wall5.xpm
+    WE       xpms/wall6.xpm
+SO xpms/wall7.xpm
+           EA xpms/wall8.xpm
+    F  100,100,100      
+ C 0, 100,250 
  
  
  

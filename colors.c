@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:22:36 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/31 12:15:59 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/09/16 19:15:23 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	rgbs(char **splitted, t_rgb *data)
 				j++;
 			if (!ft_isdigit(splitted[i][j]) && splitted[i][j] == ' '
 				&& splitted[i][j] == '\n')
-				(ft_putendl_fd("error: map invalid", 2), exit(1));
+				(ft_putendl_fd("error: beginning after the end ", 2), exit(1));
 			if (!splitted[i][j])
 				break ;
 			j++;
@@ -43,7 +43,7 @@ void	rgbs(char **splitted, t_rgb *data)
 void	checkcolorsdigits(int i)
 {
 	if (i < 0 || i > 255)
-		(ft_putendl_fd("error: map invalid", 2), exit(1));
+		(ft_putendl_fd("error: darker than black", 2), exit(1));
 }
 
 void	checkcolors(t_data *data)
