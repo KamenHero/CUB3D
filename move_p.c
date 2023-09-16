@@ -6,7 +6,7 @@
 /*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 18:57:06 by onaciri           #+#    #+#             */
-/*   Updated: 2023/09/16 12:31:01 by onaciri          ###   ########.fr       */
+/*   Updated: 2023/09/16 18:19:53 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,6 @@ int	has_wall(t_img *img, double i, double j)
 	if ((int)y > (int)img->map_y || img->data->map[(int)y][(int)x] == '1')
 		return (1);
 	return (0);
-}
-
-void	del_line(t_img	*img)
-{
-	float	x;
-	float	y;
-	int		i;
-	int		j;
-
-	x = img->x;
-	y = img->y;
-	i = (int )x;
-	j = (int )y;
-	while (sqrt(pow(x - i, 2) + pow(y - j, 2)) <= 16)
-	{
-		pixel_put(img, x, y, 0x00ff00);
-		x += cos(img->angel);
-		y -= sin(img->angel);
-	}
 }
 
 void	draw_player(t_img *img, double angle)
@@ -93,6 +74,7 @@ int	ft_move(int key, t_img *img)
 		if (img->angel >= 2 * M_PI)
 			img->angel -= 2 * M_PI;
 	}
+	raycast(img);
 	mlx_clear_window(img->mlx, img->mlx_win);
 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
 	return (0);

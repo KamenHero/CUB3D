@@ -6,7 +6,7 @@
 /*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:46:32 by onaciri           #+#    #+#             */
-/*   Updated: 2023/09/16 12:26:11 by onaciri          ###   ########.fr       */
+/*   Updated: 2023/09/16 18:18:44 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,10 @@ int	sceen(t_img *img)
 	return (0);
 }
 
-int	ft_close(int keycode, t_img *img)
+int	ft_close(t_img *img)
 {
 	free(img->ray);
 	free_data(img->data);
-	(void)keycode;
 	exit(0);
 	return (0);
 }
@@ -67,6 +66,9 @@ void	ft_init_texture(t_img *img, t_data *data)
 	img->xpm_no.file = mlx_xpm_file_to_image(img->mlx, data->no, &ls, &ss);
 	img->xpm_we.file = mlx_xpm_file_to_image(img->mlx, data->we, &ls, &ss);
 	img->xpm_ea.file = mlx_xpm_file_to_image(img->mlx, data->ea, &ls, &ss);
+	if (!img->xpm_ea.file || !img->xpm_we.file
+		|| !img->xpm_no.file || !img->xpm_so.file)
+		(free(img->ray), free_data(data), printf("xpm error\n"), exit(1));
 	img->xpm_so.dir = mlx_get_data_addr(img->xpm_so.file,
 			&img->xpm_so.bits_per_pixel,
 			&img->xpm_so.size_line, &img->xpm_so.endian);
@@ -93,6 +95,8 @@ void	screen_st(t_data *data)
 	img.mlx = mlx_init();
 	img.mlx_win = mlx_new_window(img.mlx, img.s_wide, img.s_hight, "-WESTIME-");
 	img.img = mlx_new_image(img.mlx, img.s_wide, img.s_hight);
+	if (!img.img)
+		(free(img.ray), free_data(data), printf("xpm error\n"), exit(1));
 	img.addr = mlx_get_data_addr(img.img,
 			&img.bits_per_pixel,
 			&img.line_length, &img.endian);
@@ -100,6 +104,7 @@ void	screen_st(t_data *data)
 	player_pos(&img, -1, -1);
 	img.fov = 60 * (M_PI / 180);
 	mlx_hook(img.mlx_win, 2, 1L << 0, ft_move, &img);
+	mlx_hook(img.mlx_win, 17, 0, ft_close, &img);
 	ft_init_texture(&img, data);
 	mlx_loop_hook(img.mlx, sceen, &img);
 	mlx_loop(img.mlx);
