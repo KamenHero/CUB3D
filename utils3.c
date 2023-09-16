@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 15:58:00 by oryadi            #+#    #+#             */
-/*   Updated: 2023/08/27 15:58:35 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/09/16 18:03:26 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,40 @@ int	initialutilhelp(t_data *data, char **file, t_ijx *ijx)
 		return (1);
 	}
 	return (0);
+}
+
+void	ft_xpm(char *str)
+{
+	char	*ptr;
+	int		x;
+	int		y;
+
+	ptr = ".xpm";
+	x = ft_strlenn(str);
+	y = ft_strlenn(ptr);
+	while (y >= 0)
+	{
+		if (str[x] != ptr[y])
+		{
+			ft_putendl_fd("Error : xpm emergency", 2);
+			exit(-1);
+		}
+		x--;
+		y--;
+	}
+}
+
+void	check_access(char *ptr)
+{
+	ft_xpm(ptr);
+	if (access(ptr, F_OK))
+	{
+		ft_putendl_fd("Error: ara chi l3ba kayna", 2);
+		exit (1);
+	}
+	if (access(ptr, R_OK))
+	{
+		ft_putendl_fd("Error: ara chi l3ba kayna", 2);
+		exit (1);
+	}
 }

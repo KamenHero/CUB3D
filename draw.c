@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:40:42 by onaciri           #+#    #+#             */
-/*   Updated: 2023/09/16 12:46:15 by onaciri          ###   ########.fr       */
+/*   Updated: 2023/09/16 18:10:36 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,33 @@ void	texture(t_img *img, int i, int y_tex)
 		xoff = (int)((img->ray->y / 20) * 64) % 64;
 	else
 		xoff = (int)((img->ray->x / 20) * 64) % 64;
-	fin = (y_tex * img->texUse.size_line)
-		+ (xoff * (img->texUse.bits_per_pixel / 8));
+	fin = (y_tex * img->texuse.size_line)
+		+ (xoff * (img->texuse.bits_per_pixel / 8));
 	pixel_put(img, i, (int)img->y3d,
-		*((unsigned int *)(img->texUse.dir + (int)fin)));
+		*((unsigned int *)(img->texuse.dir + (int)fin)));
 }
 
 void	chose_texture(t_img *img)
 {
 	if (img->ray->look == 2)
 	{
-		img->texUse = img->xpm_no;
-		img->texUse.dir = img->xpm_no.dir;
+		img->texuse = img->xpm_no;
+		img->texuse.dir = img->xpm_no.dir;
 	}
 	else if (img->ray->look == 1)
 	{
-		img->texUse = img->xpm_we;
-		img->texUse.dir = img->xpm_we.dir;
+		img->texuse = img->xpm_we;
+		img->texuse.dir = img->xpm_we.dir;
 	}
 	else if (img->ray->look == 3)
 	{
-		img->texUse = img->xpm_so;
-		img->texUse.dir = img->xpm_so.dir;
+		img->texuse = img->xpm_so;
+		img->texuse.dir = img->xpm_so.dir;
 	}
 	else
 	{
-		img->texUse = img->xpm_ea;
-		img->texUse.dir = img->xpm_ea.dir;
+		img->texuse = img->xpm_ea;
+		img->texuse.dir = img->xpm_ea.dir;
 	}
 }
 
