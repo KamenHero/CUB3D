@@ -6,7 +6,7 @@
 /*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:54:41 by onaciri           #+#    #+#             */
-/*   Updated: 2023/09/16 12:39:15 by onaciri          ###   ########.fr       */
+/*   Updated: 2023/09/17 09:24:59 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < 0 || y < 0 || x >= 1280 || y >= 768)
+	if (x < 0 || y < 0 || x >= img->s_wide || y >= img->s_hight)
 		return ;
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
@@ -65,11 +65,13 @@ void	horzintal_inter(t_img *img, float xstep, float ystep)
 		xstep *= -1;
 	while (img->ray->hy < img->s_hight && img->ray->hx < img->s_wide)
 	{
-		if (has_wall(img, img->ray->hy, img->ray->hx))
-			break ;
-		else if ((sin(img->ray->ray_angel) > 0))
+		if ((sin(img->ray->ray_angel) > 0))
+		{
 			if (has_wall(img, img->ray->hy - 1, img->ray->hx))
 				break ;
+		}
+		else if (has_wall(img, img->ray->hy, img->ray->hx))
+			break ;
 		img->ray->hx += xstep;
 		img->ray->hy += ystep;
 	}
@@ -93,9 +95,11 @@ void	vertical_inter(t_img *img, float xstep, float ystep)
 	while (img->ray->vy < img->s_hight && img->ray->vx < img->s_wide)
 	{
 		if (cos(img->ray->ray_angel) < 0)
+		{
 			if (has_wall(img, img->ray->vy, img->ray->vx - 1))
 				break ;
-		if (has_wall(img, img->ray->vy, img->ray->vx))
+		}
+		else if (has_wall(img, img->ray->vy, img->ray->vx))
 			break ;
 		img->ray->vx += xstep;
 		img->ray->vy += ystep;

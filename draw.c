@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:40:42 by onaciri           #+#    #+#             */
-/*   Updated: 2023/09/16 19:08:41 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/09/17 11:16:00 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	draw_3d_line(t_img *img, int i)
 	if (img->endy > img->s_hight)
 		img->endy = img->s_hight;
 	ft_fc(img, i);
-	ygrid = 64 / img->line_height;
+	ygrid = 100 / img->line_height;
 	y_tex = 0;
 	if (img->line_height > img->s_hight)
 		y_tex = ygrid * (img->line_height - img->s_hight) / 2;

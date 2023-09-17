@@ -6,7 +6,7 @@
 /*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:46:32 by onaciri           #+#    #+#             */
-/*   Updated: 2023/09/16 19:41:29 by onaciri          ###   ########.fr       */
+/*   Updated: 2023/09/17 09:30:34 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	ft_init_texture(t_img *img, t_data *data)
 	int	ls;
 	int	ss;
 
-	ls = 64;
-	ss = 64;
+	ls = 100;
+	ss = 100;
 	img->xpm_so.file = mlx_xpm_file_to_image(img->mlx, data->so, &ls, &ss);
 	img->xpm_no.file = mlx_xpm_file_to_image(img->mlx, data->no, &ls, &ss);
 	img->xpm_we.file = mlx_xpm_file_to_image(img->mlx, data->we, &ls, &ss);
@@ -95,7 +95,7 @@ void	screen_st(t_data *data)
 	img.mlx = mlx_init();
 	img.mlx_win = mlx_new_window(img.mlx, img.s_wide, img.s_hight, "-WESTIME-");
 	img.img = mlx_new_image(img.mlx, img.s_wide, img.s_hight);
-	if (!img.img)
+	if (!img.img || !img.mlx)
 		(free(img.ray), free_data(data), printf("xpm error\n"), exit(1));
 	img.addr = mlx_get_data_addr(img.img,
 			&img.bits_per_pixel,
