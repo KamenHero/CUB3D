@@ -6,7 +6,7 @@
 /*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 18:57:06 by onaciri           #+#    #+#             */
-/*   Updated: 2023/09/16 18:19:53 by onaciri          ###   ########.fr       */
+/*   Updated: 2023/09/16 19:39:59 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ void	draw_player(t_img *img, double angle)
 		return ;
 	img->x = i;
 	img->y = j;
+	raycast(img);
+	mlx_clear_window(img->mlx, img->mlx_win);
+	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
 }
 
 int	ft_move(int key, t_img *img)
@@ -74,8 +77,7 @@ int	ft_move(int key, t_img *img)
 		if (img->angel >= 2 * M_PI)
 			img->angel -= 2 * M_PI;
 	}
-	raycast(img);
-	mlx_clear_window(img->mlx, img->mlx_win);
-	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
+	else if (key == 65307)
+		ft_close(img);
 	return (0);
 }

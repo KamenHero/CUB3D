@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: onaciri <onaciri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:48:57 by oryadi            #+#    #+#             */
-/*   Updated: 2023/09/16 18:13:28 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/09/16 19:39:13 by onaciri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,6 @@ void	draw_3d_line(t_img *img, int i);
 void	free_data(t_data *data);
 void	ft_xpm(char *str);
 void	check_access(char *ptr);
+int		ft_close(t_img *img);
 
 #endif
