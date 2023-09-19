@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:23:53 by oryadi            #+#    #+#             */
-/*   Updated: 2023/09/16 19:23:18 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/09/19 16:28:32 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,19 @@ void	ft_checkplayer(char **map, size_t i, size_t *x)
 			(*x)++;
 		if (ft_strchr("NSEW0", map[i][j]))
 		{
-			if (!map[i - 1][j] || !ft_strchr("NSEW01", map[i - 1][j]))
-				(ft_putendl_fd("Error: New character unlocked", 2), exit(1));
-			if (!map[i + 1][j] || !ft_strchr("NSEW01", map[i + 1][j]))
-				(ft_putendl_fd("Error: New character unlocked", 2), exit(1));
+			if (i == 1)
+				(ft_putendl_fd("Error: Void ahead", 2), exit(1));
+			if (map[i + 1] && j > ft_strlenn(map[i + 1]))
+				(ft_putendl_fd("Error: Void ahead", 2), exit(1));
+			if (j <= ft_strlenn(map[i - 1]) && (!map[i - 1][j]
+				|| !ft_strchr("NSEW01", map[i - 1][j])))
+				(ft_putendl_fd("Error: hmm that's weird", 2), exit(1));
+			if (!ft_strchr("NSEW01", map[i + 1][j]))
+				(ft_putendl_fd("Error: hmm that's weird", 2), exit(1));
 			if (!ft_strchr("NSEW01", map[i][j + 1]))
-				(ft_putendl_fd("Error: New character unlocked", 2), exit(1));
-			if (!ft_strchr("NSEW01", map[i][j - 1]))
-				(ft_putendl_fd("Error: New character unlocked", 2), exit(1));
+				(ft_putendl_fd("Error: hmm that's weird", 2), exit(1));
+			if (j > 0 && !ft_strchr("NSEW01", map[i][j - 1]))
+				(ft_putendl_fd("Error: hmm that's weird", 2), exit(1));
 		}
 		j++;
 	}
@@ -102,7 +107,7 @@ void	checkwalls(char **map)
 	x = 0;
 	while (map[i])
 	{
-		if (map[i][0] == '0')
+		if (map[i][0] == '0' || map[i][0] == '\0')
 			(ft_putendl_fd("Error: From hero to zero", 2), exit(1));
 		if (i == 0)
 			checkfirstwall(map[i]);
